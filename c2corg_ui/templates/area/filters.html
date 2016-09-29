@@ -1,0 +1,32 @@
+<%!
+from c2corg_common.attributes import default_langs, area_types, quality_types
+%>
+<%namespace file="../helpers/filters.html" import="add_multiselect"/>
+
+<form app-search-filters app-search-filters-controller-name="appSearchFiltersController">
+  <div class="filters">
+    <div class="row simple-filters">
+
+      <div class="filter">
+        <label translate>title</label><br>
+        <input type="text" class="form-control" ng-model="filtersCtrl.filters.q">
+      </div>
+
+      <div class="filter">
+        <label translate>area_type</label><br>
+        ${add_multiselect('atyp', area_types)}
+      </div>
+
+      <div class="filter">
+        <label translate>document_quality</label><br>
+        ${add_multiselect('qa', quality_types)}
+      </div>
+
+    </div>
+    <div class="more-filters-btn-container">
+      <button class="btn blue-btn more-filters-btn" ng-click="filtersCtrl.clear()" ng-cloak
+              ng-show="filtersCtrl.filtersNb > 0"><span translate>Clear filters</span> ({{filtersCtrl.filtersNb}})</button>
+    </div>
+
+  </div>
+</form>
