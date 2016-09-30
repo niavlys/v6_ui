@@ -1,0 +1,31 @@
+<%!
+from c2corg_common.attributes import activities
+%>
+<%inherit file="base.html"/>
+<%namespace file="helpers/common.html" import="show_title"/>
+<%block name="pagetitle"><title ng-bind="mainCtrl.page_title('Filter preferences')">${show_title('Filter preferences')}</title></%block>
+<%block name="metarobots"><meta name="robots" content="noindex,nofollow"></%block>
+
+<div class="preferences">
+  <section app-preferences>
+    <h1 class="text-center" translate>Filter preferences</h1>
+    <p class="text-center" translate>Here you may set activity and region preferences, used for instance in the activity feed.</p>
+    <h2 class="text-center" translate>activities</h2>
+    <div class="content collapse in">
+      <div id="outing-activities">
+        <div class="route-activities">
+          <div ng-repeat="activity in ${activities}" class="activity">
+            <div>
+              <div class="icon-{{activity}}" class="icon-" ng-click="TODO"
+                   ng-class="{'activity-selected' : false}">
+              </div>
+              <p>{{activity | translate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h2 class="text-center" translate>regions</h2>
+    <app-map></app-map>
+  </section>
+</div>
