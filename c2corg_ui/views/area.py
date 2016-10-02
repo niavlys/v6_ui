@@ -40,11 +40,13 @@ class Area(Document):
         id, lang = self._validate_id_lang()
 
         def render_page(area, locale):
+            # FIXME self._get_geometry(area['geometry']['geom_detail'])
+            # always returns None!?
             self.template_input.update({
                 'lang': lang,
                 'area': area,
                 'locale': locale,
-                'geometry': self._get_geometry(area['geometry']['geom']),
+                'geometry': self._get_geometry(area['geometry']['geom_detail']),
                 'version': None
             })
 
@@ -66,7 +68,7 @@ class Area(Document):
                 'lang': lang,
                 'area': area,
                 'locale': locale,
-                'geometry': self._get_geometry(area['geometry']['geom']),
+                'geometry': self._get_geometry(area['geometry']['geom_detail']),
                 'version': version
             })
 
